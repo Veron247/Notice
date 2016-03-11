@@ -1,0 +1,50 @@
+<ion-view title="Login">
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+    <form name="loginForm" novalidate=""  ng-submit="loginIn(loginForm)">
+        <ion-list>
+            <label 
+                   class="item item-input" 
+                   ng-class="{ 'has-error' : loginForm.username.$invalid}">
+                <input
+                    type="text" 
+                    placeholder="StudentID/StaffId" 
+                    name="username" ng-model="username" 
+                    ng-minlength="5" ng-maxlength="14" 
+                    required>
+            </label>
+            
+            
+            <div class="form-errors" ng-messages="loginForm.username.$error" ng-messages-include="templates/form-errors.html">  
+                <div class="form-error" ng-message="maxlength">This field is must be less than 10 characters</div>  
+            </div>
+            
+            
+            <label class="item item-input"    ng-class="{ 'has-error-lr' : loginForm.password.$invalid  && loginForm.$submitted,
+            'valid-lr' :loginForm.password.$valid  && loginForm.$submitted}">
+                <input type="password" placeholder="Password" name="password" ng-model="password" ng-minlength="6" ng-maxlength="12" required>
+            </label>
+            
+            <div class="form-errors"  
+               ng-show="loginForm.password.$error && loginForm.$submitted"
+               ng-messages="loginForm.password.$error"
+               ng-messages-include="templates/form-errors.html">
+            </div>
+            
+        </ion-list>
+        <div class="spacer" style="width: 283px; height: 90px;"></div>
+        
+
+        
+         <button type="submit" class="button button-positive button-block">Log in</button>  
+            <a ui-sref="signup" class="button button-positive button-clear button-block ">Or create an account</a>
+    
+        
+<script id="templates/form-errors.html" type="text/ng-template">  
+  <div class="form-error" ng-message="required">This field is required.</div>
+  <div class="form-error" ng-message="minlength">This field is must be at least 5 characters.</div>
+  <div class="form-error" ng-message="maxlength">This field is must be less than 50 characters</div>
+</script> 
+    </form>
+</ion-content>
+</ion-view>
+
